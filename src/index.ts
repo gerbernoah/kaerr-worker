@@ -1,5 +1,5 @@
-import * as services from "./services";
 import type { Service } from "./services";
+import * as services from "./services";
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
@@ -17,15 +17,22 @@ export default {
 			}
 
 			const url = new URL(request.url);
-			const servicePath = `/${url.pathname.split("/").slice(1, 3).join("/")}/`;
+			const servicePath = `/${url.pathname.split("/").slice(1, 3).join("/")}`;
 			const subPath = url.pathname.substring(servicePath.length);
 
 			const foundService = Object.values(services).filter(
 				(service: Service) => service.path === servicePath,
 			)[0];
 
+			console.log("foundService: ", foundService);
+
 			if (foundService) {
-				const serviceResponse = await foundService.fetch(request, env, ctx, subPath);
+				const serviceResponse = await foundService.fetch(
+					request,
+					env,
+					ctx,
+					subPath,
+				);
 
 				if (serviceResponse) {
 					serviceResponse.headers.set("Access-Control-Allow-Origin", "*"); // TODO: update in production

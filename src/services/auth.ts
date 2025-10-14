@@ -29,7 +29,7 @@ export type JWTPayload = {
 };
 
 export const service: Service = {
-	path: "/v1/auth/",
+	path: "/v1/auth",
 	fetch: async (
 		request: Request,
 		env: Env,

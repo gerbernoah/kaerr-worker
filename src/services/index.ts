@@ -1,5 +1,5 @@
 export { service as auth } from "./auth";
-
+export { service as kaerr } from "./kaerr";
 
 export type Service = {
 	path: string;
