@@ -1,8 +1,12 @@
-import type { PathData } from "./model";
+export type KGPath = number[];
+
+export type PathData = {
+	paths: KGPath[];
+};
 
 export function getPathsForPair(
-	_materialId: string,
-	_projectId: string,
+	materialId: string,
+	projectId: string,
 ): PathData {
 	// TODO: Implement this based on your KG structure
 	// This should query your knowledge graph to find paths between

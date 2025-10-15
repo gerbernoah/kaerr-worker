@@ -1,5 +1,5 @@
 import type { Service } from "./services";
-import * as services from "./services";
+import * as services from "./services/kg";
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {

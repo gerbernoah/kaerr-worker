@@ -40,6 +40,13 @@ export const service: Service = {
 		const authContext = await authenticateToken(request.headers, env);
 
 		switch (`${request.method} /${subPath.split("/")[0]}`) {
+			case "GET /health": {
+				return new Response("Auth service is up", { status: 200 });
+			}
+			case "GET /authenticated": {
+				if (authContext instanceof Response) return authContext;
+				return new Response("Authenticated", { status: 200 });
+			}
 			case "POST /signup": {
 				//return new Response('Signup disabled', { status: 409 });
 
@@ -86,10 +93,6 @@ export const service: Service = {
 
 				const response: AuthTokenResponse = { token };
 				return new Response(JSON.stringify(response), { status: 200 });
-			}
-			case "GET /": {
-				if (authContext instanceof Response) return authContext;
-				return new Response("Authenticated", { status: 200 });
 			}
 		}
 	},
